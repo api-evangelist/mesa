@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Mesa Partner Authentication Invoices API
+  version: '1.0'
+  description: REST API for Mesa partners. Exchange your API keys (clientId/clientSecret) for a short-lived Bearer/JWT session token scoped to one of your end users, then retrieve that user's invoices. The minted token also powers the embedded Mesa UI (MesaClient) iframe handshake.
+  contact:
+    name: Mesa Support
+    email: support@joinmesa.com
+    url: https://docs.joinmesa.com
+  x-apievangelist-generated: true
+servers:
+- url: https://api.joinmesa.com/v1
+  description: Production
+tags:
+- name: Invoices
+  description: Retrieve invoices for the authenticated user.
+paths:
+  /partners/{partnerId}/invoices:
+    get:
+      operationId: listPartnerInvoices
+      summary: List invoices
+      description: List the authenticated user's invoices, paginated and sortable.
+      tags:
+      - Invoices
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        description: Your assigned partner id.
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        required: false
+        description: Field to sort by.
+        schema:
+          type: string
+      - name: sortDirection
+        in: query
+        required: false
+        description: Sort direction.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: page
+        in: query
+        required: false
+        description: 1-based page number.
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        description: Page size.
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: A paginated list of invoices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+        '401':
+          description: Missing or invalid Bearer token.
+components:
+  schemas:
+    Invoice:
+      type: object
+      description: A supplier invoice. Field-level schema is not published in Mesa's docs; the id is the only field referenced (as invoiceId in the embedded instant-payout flow).
+      properties:
+        id:
+          type: string
+          description: Mesa invoice id (used as invoiceId in the embed instant-payout button).
+    InvoiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          description: The page of invoices.
+          items:
+            $ref: '#/components/schemas/Invoice'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 10
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token returned by /token or /partners/{partnerId}/auth.
