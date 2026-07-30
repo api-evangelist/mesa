@@ -1,8 +1,13 @@
 aid: mesa
 name: Mesa
-description: 'Mesa is a company surfaced as a portfolio company of matrix-partners and added to the API
-  Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Mesa is a Boulder, Colorado fintech that provides embedded electronic-invoicing, payments, and
+  invoice-financing (early-payment) infrastructure for B2B supplier networks. Suppliers get paid early
+  via ACH while Mesa automates repayment once the buyer settles. Mesa ships as drop-in embedded UI —
+  a JavaScript SDK (MesaClient) that renders Mesa's onboarding, dashboard, and instant-payout flows in
+  an origin-pinned iframe inside a partner's web app — backed by a Partner REST API for user
+  authentication and invoice retrieval. Auth is via API keys (clientId/clientSecret) exchanged for a
+  short-lived JWT, with optional OIDC (Okta, Azure AD, Google). Backed by Matrix Partners; SOC 2.
 url: https://raw.githubusercontent.com/api-evangelist/mesa/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +15,108 @@ x-backed-by:
 - matrix-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.joinmesa.com/favicon.ico
 tags:
 - Company
 - Fintech
-apis: []
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-- FN: APIs.json
-  email: info@apis.io
+- Payments
+- Invoice Financing
+- Embedded Finance
+- Early Payment
+- ACH
+- Supplier Payments
+- B2B
+apis:
+- aid: mesa:mesa-authentication-api
+  name: Mesa Authentication API
+  description: Exchange API keys for a session token.
+  humanURL: https://docs.joinmesa.com/partner-api/endpoints
+  baseURL: https://api.joinmesa.com/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/mesa-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinmesa.com/partner-api
+  - type: APIReference
+    url: https://docs.joinmesa.com/partner-api/endpoints
+- aid: mesa:mesa-invoices-api
+  name: Mesa Invoices API
+  description: Retrieve invoices for the authenticated user.
+  humanURL: https://docs.joinmesa.com/partner-api/endpoints
+  baseURL: https://api.joinmesa.com/v1
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/mesa-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinmesa.com/partner-api
+  - type: APIReference
+    url: https://docs.joinmesa.com/partner-api/endpoints
 common:
 - type: Website
-  url: https://earlypay.joinmesa.com
+  url: https://www.joinmesa.com
+- type: DeveloperPortal
+  url: https://partners.joinmesa.com
+- type: Documentation
+  url: https://docs.joinmesa.com
+- type: APIReference
+  url: https://docs.joinmesa.com/partner-api/endpoints
+- type: GettingStarted
+  url: https://docs.joinmesa.com/embedded-ui/quickstart
+- type: Authentication
+  url: authentication/mesa-authentication.yml
+- type: SignUp
+  url: https://partners.joinmesa.com
+- type: Support
+  url: mailto:support@joinmesa.com
+- type: TermsOfService
+  url: https://www.joinmesa.com/terms
+- type: PrivacyPolicy
+  url: https://www.joinmesa.com/privacy
+- type: TrustCenter
+  url: https://trust.joinmesa.com
+- type: Compliance
+  url: https://trust.joinmesa.com
+- type: Conventions
+  url: conventions/mesa-conventions.yml
+- type: Components
+  url: components/mesa-components.yml
+- type: DataModel
+  url: data-model/mesa-data-model.yml
+- type: Conformance
+  url: conformance/mesa-conformance.yml
+- type: Lifecycle
+  url: lifecycle/mesa-lifecycle.yml
+- type: LLMsTxt
+  url: llms/mesa-llms.txt
+- type: MCPServer
+  url: mcp/mesa-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: TrustCenter
+  url: security/mesa-trust-center.yml
+- type: DomainSecurity
+  url: security/mesa-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
