@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.joinmesa.com
+url: https://trust.joinmesa.com
+certifications:
+- SOC 2
+evidence:
+- source: https://www.joinmesa.com
+  keywords: [soc 2 compliant]
+- source: https://trust.joinmesa.com
+  keywords: [mesa trust center]
+note: >-
+  joinmesa.com states Mesa is "SOC 2 compliant" and links a trust center at trust.joinmesa.com. The
+  trust portal is a client-rendered app, so the certification list could not be enumerated verbatim;
+  SOC 2 is the certification named on the marketing site. Headquartered in Boulder, Colorado.

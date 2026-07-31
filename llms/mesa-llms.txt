@@ -1,0 +1,18 @@
+# Mesa
+
+> Developer documentation for Mesa's embedded financial features.
+
+## Docs
+
+- [Embedded UI — Overview](/embedded-ui): Mesa Embedded UI lets you drop Mesa's financial features directly into your web application. The integration renders in an `<iframe>` controlled by a lightweight JavaScript SDK, keeping Mesa's internals fully isolated from your application code.
+- [Partner API - Overview](/partner-api): [Endpoints](/partner-api/endpoints) — all endpoints for the partner API
+- [Set Up - Overview](/set-up): Log in at [partners.joinmesa.com](https://partners.joinmesa.com) using the credentials supplied by your Mesa contact.
+- [Set Up - API Keys](/set-up/api-keys): An API Key consists of a clientId and clientSecret...
+- [Set Up - Authorized Users](/set-up/authorized-users)
+- [Partner API - Endpoints](/partner-api/endpoints): Authenticate for a given user, using your API Keys.
+- [Auth Flow](/embedded-ui/auth-flow): Mesa Embedded UI uses a JWT-based trust model to establish a secure channel between your page and the Mesa iframe.
+- [Quickstart](/embedded-ui/quickstart): Integrate Mesa Embedded UI into your web app in three steps.
+- [SDK Reference](/embedded-ui/sdk-reference): The main class for embedding Mesa into a partner web app. Available as an ES module export and as `window.MesaClient` for script-tag usage.
+- [ThemeConfig](/embedded-ui/theme-config): `ThemeConfig` controls the visual appearance and copy of the Mesa embed. You can provide it in two ways:
+- [Theming](/embedded-ui/theming): Mesa Embedded UI supports white-label theming so the embed matches your brand. There are two ways to apply theme configuration:
+- [User Flows](/embedded-ui/user-flows): The Mesa embed is organized into four distinct screens. This guide explains each screen, how to control which one the embed opens on, and how to navigate between them at runtime.

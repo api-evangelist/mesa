@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.joinmesa.com/embedded-ui/sdk-reference
+docs: https://docs.joinmesa.com/embedded-ui
+summary: >-
+  Mesa ships its financial features as a drop-in embedded UI: a lightweight JavaScript SDK
+  (MesaClient) that renders Mesa's intro, auth, onboarding, and dashboard screens inside an
+  origin-pinned iframe, plus an injectable "Get Paid Now" instant-payout button. White-label
+  theming via ThemeConfig. Distinct from a server SDK.
+loaders:
+- name: '@mesa/sdk'
+  type: npm-module
+  install: npm install @mesa/sdk
+  note: >-
+    Referenced in the docs as the ES-module import. NOT resolvable on public npm as of 2026-07-20
+    (registry returns 404) — likely private/scoped or gated to onboarded partners.
+- name: mesa-client.js
+  type: script-tag
+  url: https://cdn.joinmesa.com/sdk/mesa-client.js
+  global: window.MesaClient
+  note: Documented CDN loader; host did not resolve on probe 2026-07-20 (partner-gated / not public).
+components:
+- family: Embedded UI (MesaClient)
+  kind: iframe-embed
+  description: >-
+    Mounts an origin-pinned Mesa iframe into a container element via MesaClient.init({containerId,
+    jwtToken}). Four screens: intro, auth, onboarding, dashboard, selectable via `entrypoint` and
+    navigable at runtime (startIntroScreen, startAuth, startOnboarding, startDashboard).
+  methods:
+  - init
+  - destroy
+  - startIntroScreen
+  - startAuth
+  - startOnboarding
+  - startDashboard
+  - updateTheme
+  - startInstantPayoutButton
+  - removeInstantPayoutButtons
+- family: Instant Payout Button
+  kind: injected-button
+  description: >-
+    startInstantPayoutButton() injects a styled "Get Paid Now" button (rendered in shadow DOM) next
+    to one or more DOM elements; clicking opens the instant-payout modal for a given invoiceId and
+    expands the iframe to a fullscreen overlay.
+theming:
+  config: ThemeConfig
+  reference: https://docs.joinmesa.com/embedded-ui/theme-config
+  capabilities:
+  - accent/gray named colors + custom hex scales
+  - radius and scaling
+  - copy overrides for intro / auth / dashboard / instant-payout screens

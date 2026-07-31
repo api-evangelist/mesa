@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mesa-partner-api-openapi.yml
+docs: https://docs.joinmesa.com/partner-api/endpoints
+note: >-
+  Entity graph derived from the documented Partner API and embedded-UI flows. Mesa does not publish a
+  full object reference, so most attribute-level detail is unavailable; relationships are inferred
+  from the id-reference fields the docs expose (partnerId, vendorId, userId, invoiceId).
+entities:
+- name: Partner
+  id: partnerId
+  description: A Mesa partner (the integrating platform); holds API keys.
+- name: Vendor
+  id: vendorId
+  description: The vendor / Mesa product context (e.g. early-pay) a user is associated with.
+- name: User
+  id: userId
+  description: An end user (supplier) authenticated by the partner into the Mesa embed.
+- name: Invoice
+  id: id
+  id_prefix: inv_
+  description: A supplier invoice eligible for early payment / instant payout.
+- name: Payment
+  description: An early/ACH payment against an invoice (surfaced in the dashboard payments tab).
+- name: Collection
+  description: A repayment/collection record (surfaced in the dashboard collections tab).
+relationships:
+- from: Partner
+  to: User
+  type: has_many
+  via: userId
+- from: User
+  to: Vendor
+  type: belongs_to
+  via: vendorId
+- from: User
+  to: Invoice
+  type: has_many
+  via: userId
+- from: Invoice
+  to: Payment
+  type: has_many
+  via: id
+- from: Invoice
+  to: Collection
+  type: has_many
+  via: id

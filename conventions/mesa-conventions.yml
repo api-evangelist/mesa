@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.joinmesa.com/partner-api/endpoints
+docs: https://docs.joinmesa.com/embedded-ui/auth-flow
+authentication:
+  style: bearer-jwt
+  detail: >-
+    API keys (clientId/clientSecret) exchanged server-side for a short-lived JWT, sent as
+    Authorization Bearer on Partner API calls. See authentication/mesa-authentication.yml.
+idempotency:
+  supported: false
+  note: Mesa's documentation does not describe an idempotency-key mechanism.
+pagination:
+  style: page-number
+  request_params: [page, limit]
+  sort_params: [sortField, sortDirection]
+  response_fields: [data, page, limit, total]
+  defaults:
+    page: 1
+    limit: 25
+  note: >-
+    List endpoints (e.g. GET /partners/{partnerId}/invoices) return a page-number envelope with the
+    page slice under `data` and page/limit/total metadata alongside it.
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: Base path https://api.joinmesa.com/v1; Partner API endpoints documented as "Version 1.0".
+error_envelope:
+  documented: false
+  note: The docs publish only 200 responses; no error envelope/schema is published.
+rate_limit_signaling:
+  documented: false
+metadata:
+  documented: false
+cross_links:
+  authentication: authentication/mesa-authentication.yml
+  lifecycle: lifecycle/mesa-lifecycle.yml
+  data_model: data-model/mesa-data-model.yml

@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.joinmesa.com/partner-api/endpoints
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.joinmesa.com/partner-api/endpoints
+  note: Base path /v1; Partner API documented as "Version 1.0".
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy or Sunset/Deprecation header support documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: No public status page located (no status.joinmesa.com; trust.joinmesa.com is a JS trust portal).
+deprecated_operations: []

@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Mesa Partner API
+  version: 1.0.0
+extends: openapi/mesa-partner-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-notes: >-
+      Faithfully modeled from Mesa's published docs; Mesa does not publish a machine-readable OpenAPI
+      or a documented error catalog. Auth model captured in authentication/mesa-authentication.yml.
+- target: $.info
+  update:
+    x-authentication: authentication/mesa-authentication.yml
+    x-conventions: conventions/mesa-conventions.yml
+    x-data-model: data-model/mesa-data-model.yml
+- target: $.paths['/partners/{partnerId}/invoices'].get
+  update:
+    x-pagination:
+      style: page-number
+      params: [page, limit, sortField, sortDirection]
+      response_fields: [data, page, limit, total]

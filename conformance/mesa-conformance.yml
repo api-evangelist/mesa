@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.joinmesa.com/embedded-ui/user-flows
+docs: https://www.joinmesa.com
+standards:
+- id: oidc
+  conforms: true
+  evidence: >-
+    Docs document optional end-user auth via an OpenID Provider (Okta, Azure AD, Google) using the
+    Authorization Code flow with openid/email/profile scopes.
+- id: oauth2-authorization-code
+  conforms: true
+  evidence: OIDC integration requires the Authorization Code flow.
+- id: jwt
+  conforms: true
+  evidence: Token endpoints return signed JWTs used for Bearer auth and the embed handshake.
+- id: soc2
+  conforms: true
+  evidence: joinmesa.com states "SOC 2 compliant"; trust center at https://trust.joinmesa.com.
+- id: ach
+  conforms: true
+  evidence: Early payments settle via ACH transfers per product docs.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error schema published.
+- id: rest
+  conforms: true
+  evidence: JSON-over-HTTP Partner API with resource paths and Bearer auth.

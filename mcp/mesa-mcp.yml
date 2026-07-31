@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/mesa-partner-api-openapi.yml
+note: >-
+  No official hosted/remote Mesa MCP server was found (no public listing in the MCP registry, npm
+  @modelcontextprotocol, or Mesa docs as of 2026-07-20). Candidate tool list derived one-per-operation
+  from the documented Partner API.
+server:
+  name: mesa
+  transport: http
+tools:
+- name: create_token
+  description: Mint a short-lived JWT session token for an end user using partner API keys.
+  source_operation: openapi/mesa-partner-api-openapi.yml#createToken
+- name: authenticate_partner_user
+  description: Authenticate a user with API keys and return a Bearer token plus session config.
+  source_operation: openapi/mesa-partner-api-openapi.yml#authenticatePartnerUser
+- name: list_partner_invoices
+  description: List the authenticated user's invoices, paginated and sortable.
+  source_operation: openapi/mesa-partner-api-openapi.yml#listPartnerInvoices

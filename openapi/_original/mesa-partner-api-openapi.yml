@@ -1,0 +1,216 @@
+# generated: '2026-07-20'
+# method: generated
+# source: https://docs.joinmesa.com/partner-api/endpoints (+ /embedded-ui/auth-flow, /embedded-ui/quickstart)
+# note: Faithfully modeled from Mesa's published Partner API documentation. Mesa does not
+#       publish a machine-readable OpenAPI; request/response shapes are transcribed verbatim
+#       from the docs. Not an authoritative provider spec.
+openapi: 3.1.0
+info:
+  title: Mesa Partner API
+  version: '1.0'
+  description: >-
+    REST API for Mesa partners. Exchange your API keys (clientId/clientSecret) for a short-lived
+    Bearer/JWT session token scoped to one of your end users, then retrieve that user's invoices.
+    The minted token also powers the embedded Mesa UI (MesaClient) iframe handshake.
+  contact:
+    name: Mesa Support
+    email: support@joinmesa.com
+    url: https://docs.joinmesa.com
+  x-apievangelist-generated: true
+servers:
+- url: https://api.joinmesa.com/v1
+  description: Production
+tags:
+- name: Authentication
+  description: Exchange API keys for a session token.
+- name: Invoices
+  description: Retrieve invoices for the authenticated user.
+paths:
+  /token:
+    post:
+      operationId: createToken
+      summary: Create a session token
+      description: >-
+        Authenticate with your clientId and clientSecret and mint a short-lived JWT scoped to a
+        single end user (vendorId + userId). Call this server-side only; never expose credentials
+        to the browser. The returned token is passed to MesaClient.init() as jwtToken.
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: A signed JWT for the requested user session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid clientId or clientSecret.
+  /partners/{partnerId}/auth:
+    post:
+      operationId: authenticatePartnerUser
+      summary: Authenticate a partner user
+      description: >-
+        Authenticate for a given user using your API Keys. Returns a Bearer token to be used on
+        subsequent Partner API calls, plus session config (theme).
+      tags: [Authentication]
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        description: Your assigned partner id.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerAuthRequest'
+      responses:
+        '200':
+          description: A Bearer token and session config.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerAuthResponse'
+        '401':
+          description: Invalid credentials.
+  /partners/{partnerId}/invoices:
+    get:
+      operationId: listPartnerInvoices
+      summary: List invoices
+      description: List the authenticated user's invoices, paginated and sortable.
+      tags: [Invoices]
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        description: Your assigned partner id.
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        required: false
+        description: Field to sort by.
+        schema:
+          type: string
+      - name: sortDirection
+        in: query
+        required: false
+        description: Sort direction.
+        schema:
+          type: string
+          enum: [asc, desc]
+      - name: page
+        in: query
+        required: false
+        description: 1-based page number.
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        description: Page size.
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: A paginated list of invoices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+        '401':
+          description: Missing or invalid Bearer token.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token returned by /token or /partners/{partnerId}/auth.
+  schemas:
+    TokenRequest:
+      type: object
+      required: [clientId, clientSecret, vendorId, userId]
+      properties:
+        clientId:
+          type: string
+          description: Your API Key clientId.
+        clientSecret:
+          type: string
+          description: Your API Key clientSecret.
+        vendorId:
+          type: string
+          description: The vendor / Mesa product identifier this user is associated with (e.g. early-pay).
+        userId:
+          type: string
+          description: Your authenticated user's id.
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The signed JWT to pass to MesaClient.init() or use as a Bearer token.
+    PartnerAuthRequest:
+      type: object
+      required: [clientId, clientSecret, vendorId, userId]
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        vendorId:
+          type: string
+          description: The vendor id to which this user is associated.
+        userId:
+          type: string
+          description: The user id.
+    PartnerAuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The Bearer token to be used for subsequent API calls.
+        config:
+          type: object
+          description: Session configuration.
+          properties:
+            theme:
+              type: object
+              description: Theme object controlling the embed appearance.
+    InvoiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          description: The page of invoices.
+          items:
+            $ref: '#/components/schemas/Invoice'
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 10
+    Invoice:
+      type: object
+      description: >-
+        A supplier invoice. Field-level schema is not published in Mesa's docs; the id is the only
+        field referenced (as invoiceId in the embedded instant-payout flow).
+      properties:
+        id:
+          type: string
+          description: Mesa invoice id (used as invoiceId in the embed instant-payout button).

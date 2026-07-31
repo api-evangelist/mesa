@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.joinmesa.com/set-up/api-keys
+docs: https://docs.joinmesa.com/embedded-ui/auth-flow
+summary:
+  types: [apiKey, http, openIdConnect]
+  api_key_in: [body]
+  oauth2_flows: [authorizationCode]
+  model: >-
+    Server-side API keys (clientId + clientSecret) are exchanged for a short-lived JWT session token
+    scoped to a single end user (vendorId + userId). The JWT is used as a Bearer token on Partner API
+    calls and passed to the MesaClient embed handshake. End users authenticate either with Mesa native
+    sign-up/sign-in or via the partner's OIDC provider.
+schemes:
+- name: apiKeyCredentials
+  type: apiKey
+  in: body
+  description: >-
+    clientId + clientSecret pair issued in the Mesa partner portal (partners.joinmesa.com). Sent in
+    the JSON body of POST /token and POST /partners/{partnerId}/auth. Must stay server-side.
+  sources: [openapi/mesa-partner-api-openapi.yml, https://docs.joinmesa.com/set-up/api-keys]
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Short-lived JWT returned by the token endpoints; used on subsequent Partner API calls.
+  sources: [openapi/mesa-partner-api-openapi.yml]
+- name: oidc
+  type: openIdConnect
+  description: >-
+    Optional end-user authentication via the partner's OpenID Provider (Okta, Azure AD, Google) using
+    the Authorization Code flow with scopes openid, email, profile. The partner shares Issuer URL,
+    Client ID, and Client Secret with Mesa; contact support@joinmesa.com to enable.
+  scopes: [openid, email, profile]
+  sources: [https://docs.joinmesa.com/embedded-ui/user-flows]
+jwt_payload:
+  origin: Allowed iframe origin; scopes the token to the partner domain.
+  partnerId: Mesa-assigned partner identifier.
+  programCode: Controls which payment programs appear in onboarding.

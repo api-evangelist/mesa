@@ -1,0 +1,16 @@
+{
+  "provider": "mesa",
+  "sources": [
+    "mesa-authentication-api-openapi.yml",
+    "mesa-invoices-api-openapi.yml"
+  ],
+  "outputs": [
+    "mesa-authentication-api-openapi.yml",
+    "mesa-invoices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
