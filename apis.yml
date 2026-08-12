@@ -71,6 +71,8 @@ apis:
   - type: APIReference
     url: https://docs.joinmesa.com/partner-api/endpoints
 common:
+- type: Overlay
+  url: overlays/mesa-partner-api-overlay.yaml
 - type: Website
   url: https://www.joinmesa.com
 - type: DeveloperPortal
