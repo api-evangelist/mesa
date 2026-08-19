@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mesa Partner Authentication API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a session token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.joinmesa.com/v1/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate with your clientId and clientSecret and mint a short-lived JWT scoped to a single end user (vendorId + userId). Call this server-side only; never expose credentials to the browser. The returned token is passed to MesaClient.init() as jwtToken."
+        },
+        {
+          "info": {
+            "name": "Authenticate a partner user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.joinmesa.com/v1/partners/:partnerId/auth",
+            "params": [
+              {
+                "name": "partnerId",
+                "value": "",
+                "type": "path",
+                "description": "Your assigned partner id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate for a given user using your API Keys. Returns a Bearer token to be used on subsequent Partner API calls, plus session config (theme)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

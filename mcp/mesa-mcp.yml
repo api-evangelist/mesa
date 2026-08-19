@@ -2,8 +2,7 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/mesa-partner-api-openapi.yml
-note: >-
-  No official hosted/remote Mesa MCP server was found (no public listing in the MCP registry, npm
+note: No official hosted/remote Mesa MCP server was found (no public listing in the MCP registry, npm
   @modelcontextprotocol, or Mesa docs as of 2026-07-20). Candidate tool list derived one-per-operation
   from the documented Partner API.
 server:
@@ -19,3 +18,9 @@ tools:
 - name: list_partner_invoices
   description: List the authenticated user's invoices, paginated and sortable.
   source_operation: openapi/mesa-partner-api-openapi.yml#listPartnerInvoices
+deployment:
+  mode: none
+  verified: derived
+  tools: 3
+  checked: '2026-08-12'
+  source: catalog MCP census
