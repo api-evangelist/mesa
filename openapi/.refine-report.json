@@ -1,8 +1,7 @@
 {
   "provider": "mesa",
   "sources": [
-    "mesa-authentication-api-openapi.yml",
-    "mesa-invoices-api-openapi.yml"
+    "_original/mesa-partner-api-openapi.yml"
   ],
   "outputs": [
     "mesa-authentication-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mesa-partner-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "mesa-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mesa-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

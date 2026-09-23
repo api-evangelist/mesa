@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Mesa Partner Authentication Invoices API
+  title: Mesa Partner Invoices API
   version: '1.0'
   description: REST API for Mesa partners. Exchange your API keys (clientId/clientSecret) for a short-lived Bearer/JWT session token scoped to one of your end users, then retrieve that user's invoices. The minted token also powers the embedded Mesa UI (MesaClient) iframe handshake.
   contact:
