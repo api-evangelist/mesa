@@ -71,13 +71,6 @@ paths:
           description: Missing or invalid Bearer token.
 components:
   schemas:
-    Invoice:
-      type: object
-      description: A supplier invoice. Field-level schema is not published in Mesa's docs; the id is the only field referenced (as invoiceId in the embedded instant-payout flow).
-      properties:
-        id:
-          type: string
-          description: Mesa invoice id (used as invoiceId in the embed instant-payout button).
     InvoiceList:
       type: object
       properties:
@@ -95,6 +88,13 @@ components:
         total:
           type: integer
           example: 10
+    Invoice:
+      type: object
+      description: A supplier invoice. Field-level schema is not published in Mesa's docs; the id is the only field referenced (as invoiceId in the embedded instant-payout flow).
+      properties:
+        id:
+          type: string
+          description: Mesa invoice id (used as invoiceId in the embed instant-payout button).
   securitySchemes:
     bearerAuth:
       type: http
