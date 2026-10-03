@@ -68,30 +68,6 @@ paths:
           description: Invalid credentials.
 components:
   schemas:
-    TokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The signed JWT to pass to MesaClient.init() or use as a Bearer token.
-    PartnerAuthRequest:
-      type: object
-      required:
-      - clientId
-      - clientSecret
-      - vendorId
-      - userId
-      properties:
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        vendorId:
-          type: string
-          description: The vendor id to which this user is associated.
-        userId:
-          type: string
-          description: The user id.
     TokenRequest:
       type: object
       required:
@@ -125,6 +101,30 @@ components:
             theme:
               type: object
               description: Theme object controlling the embed appearance.
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The signed JWT to pass to MesaClient.init() or use as a Bearer token.
+    PartnerAuthRequest:
+      type: object
+      required:
+      - clientId
+      - clientSecret
+      - vendorId
+      - userId
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        vendorId:
+          type: string
+          description: The vendor id to which this user is associated.
+        userId:
+          type: string
+          description: The user id.
   securitySchemes:
     bearerAuth:
       type: http
