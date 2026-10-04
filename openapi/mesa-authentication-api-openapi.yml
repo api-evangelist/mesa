@@ -68,6 +68,43 @@ paths:
           description: Invalid credentials.
 components:
   schemas:
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The signed JWT to pass to MesaClient.init() or use as a Bearer token.
+    PartnerAuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The Bearer token to be used for subsequent API calls.
+        config:
+          type: object
+          description: Session configuration.
+          properties:
+            theme:
+              type: object
+              description: Theme object controlling the embed appearance.
+    PartnerAuthRequest:
+      type: object
+      required:
+      - clientId
+      - clientSecret
+      - vendorId
+      - userId
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        vendorId:
+          type: string
+          description: The vendor id to which this user is associated.
+        userId:
+          type: string
+          description: The user id.
     TokenRequest:
       type: object
       required:
@@ -88,43 +125,6 @@ components:
         userId:
           type: string
           description: Your authenticated user's id.
-    PartnerAuthResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The Bearer token to be used for subsequent API calls.
-        config:
-          type: object
-          description: Session configuration.
-          properties:
-            theme:
-              type: object
-              description: Theme object controlling the embed appearance.
-    TokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The signed JWT to pass to MesaClient.init() or use as a Bearer token.
-    PartnerAuthRequest:
-      type: object
-      required:
-      - clientId
-      - clientSecret
-      - vendorId
-      - userId
-      properties:
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        vendorId:
-          type: string
-          description: The vendor id to which this user is associated.
-        userId:
-          type: string
-          description: The user id.
   securitySchemes:
     bearerAuth:
       type: http
