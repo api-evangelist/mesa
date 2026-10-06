@@ -42,7 +42,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 image: https://www.joinmesa.com/favicon.ico
 tags:
 - Company
@@ -84,6 +84,8 @@ apis:
   - type: APIReference
     url: https://docs.joinmesa.com/partner-api/endpoints
 common:
+- url: https://www.joinmesa.com/blog/
+  type: Blog
 - type: Overlay
   url: overlays/mesa-partner-api-overlay.yaml
 - type: Website
