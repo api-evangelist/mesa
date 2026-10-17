@@ -68,6 +68,26 @@ paths:
           description: Invalid credentials.
 components:
   schemas:
+    TokenRequest:
+      type: object
+      required:
+      - clientId
+      - clientSecret
+      - vendorId
+      - userId
+      properties:
+        clientId:
+          type: string
+          description: Your API Key clientId.
+        clientSecret:
+          type: string
+          description: Your API Key clientSecret.
+        vendorId:
+          type: string
+          description: The vendor / Mesa product identifier this user is associated with (e.g. early-pay).
+        userId:
+          type: string
+          description: Your authenticated user's id.
     TokenResponse:
       type: object
       properties:
@@ -105,26 +125,6 @@ components:
         userId:
           type: string
           description: The user id.
-    TokenRequest:
-      type: object
-      required:
-      - clientId
-      - clientSecret
-      - vendorId
-      - userId
-      properties:
-        clientId:
-          type: string
-          description: Your API Key clientId.
-        clientSecret:
-          type: string
-          description: Your API Key clientSecret.
-        vendorId:
-          type: string
-          description: The vendor / Mesa product identifier this user is associated with (e.g. early-pay).
-        userId:
-          type: string
-          description: Your authenticated user's id.
   securitySchemes:
     bearerAuth:
       type: http
