@@ -64,6 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Mesa is a company surfaced as a portfolio company of matrix-partners and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment pipeline.
+Mesa is a Boulder, Colorado fintech that provides embedded electronic-invoicing, payments, and invoice-financing (early-payment) infrastructure for B2B supplier networks. Suppliers get paid early via ACH while Mesa automates repayment once the buyer settles. Mesa ships as drop-in embedded UI — a JavaScript SDK (MesaClient) that renders Mesa's onboarding, dashboard, and instant-payout flows in an origin-pinned iframe inside a partner's web app — backed by a Partner REST API for user authentication and invoice retrieval. Auth is via API keys (clientId/clientSecret) exchanged for a short-lived JWT, with optional OIDC (Okta, Azure AD, Google). Backed by Matrix Partners; SOC 2.
 
-Backed by: matrix-partners — https://earlypay.joinmesa.com
+**Areas:** Company · Fintech · Payments · Invoice Financing · Embedded Finance · Early Payment · ACH · Supplier Payments · B2B
+
+## Mesa on APIs.io
+
+Everything profiled for Mesa is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mesa/](https://apis.io/providers/mesa/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Mesa Authentication API](https://apis.io/apis/mesa/mesa-authentication-api/) — Exchange API keys for a session token.
+- [Mesa Invoices API](https://apis.io/apis/mesa/mesa-invoices-api/) — Retrieve invoices for the authenticated user.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mesa](https://apis.io/servers/mesa/mesa/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Mesa Partner Authentication API](https://apis.io/collections/mesa/open-mesa-authentication-api/)
+- [Mesa Partner Authentication Invoices API](https://apis.io/collections/mesa/open-mesa-invoices-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mesa Partner Api Overlay](https://apis.io/overlays/mesa/mesa-partner-api-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mesa Authentication](https://apis.io/security/mesa/mesa-authentication/)
+- [Mesa Domain Security](https://apis.io/security/mesa/mesa-domain-security/)
+- [Mesa Trust Center](https://apis.io/security/mesa/mesa-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.joinmesa.com)
+- [Documentation](https://docs.joinmesa.com)
+- [Getting started](https://docs.joinmesa.com/embedded-ui/quickstart)
+- [API reference](https://docs.joinmesa.com/partner-api/endpoints)
+- [Sign up](https://partners.joinmesa.com)
+- [Blog](https://www.joinmesa.com/blog/)
+- [Compliance](https://trust.joinmesa.com)
+- [Trust centre](https://trust.joinmesa.com)
+- [Terms of service](https://www.joinmesa.com/terms)
+- [Privacy policy](https://www.joinmesa.com/privacy)
+
+## API Evangelist rating
+
+**Kin Score 15.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 14.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 20.8 |
+| Access clarity | 0.0 |
+
+**Agent readiness 16.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mesa/](https://apis.io/providers/mesa/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mesa: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mesa/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
